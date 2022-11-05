@@ -1,7 +1,7 @@
+
 const xoBox = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
 let player = "x"
 let computer = "o"
-let mikum = 0
 /*
 function chooseX(){
     let player = "x"
@@ -12,13 +12,27 @@ function chooseO(){
     let player = "o"
     let computer = "x"   
 } */
+initGame()
 
-function endGame(){
-    document.getElementById("ttt").innerHTML +=""  
-    xoBox = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
-    for (const i in xoBox) {
-        document.getElementById(`box${i+1}`).innerHTML = ""
+function initGame(){
+    for(let i in xoBox){
+        xoBox[i] = undefined    }
+    let player = "x"
+    let computer = "o"
+    let mikum = 0
+    document.getElementById("ttt").innerHTML = ""  
+    
+    for (let i = 1 ; i <= 9 ; i++) {
+        document.getElementById(`box${i}`).innerHTML = ""
     }
+}
+
+function endGame() {
+    initGame()
+    for (let i = 1 ; i <= 9 ; i++){
+    document.getElementById(`box${i}`).disabled = false
+    }
+    document.getElementById(`play`).disabled = false
 }
 
 function mecomputer(){ 
@@ -38,8 +52,11 @@ function mecomputer(){
         xoBox[2] === xoBox[5]  &&  xoBox[2] === xoBox[8] && xoBox[2] === computer||
         xoBox[6] === xoBox[4]  &&  xoBox[6] === xoBox[2] && xoBox[6] === computer||
         xoBox[0] === xoBox[4]  &&  xoBox[0] === xoBox[8] && xoBox[0] === computer){
-            document.getElementById("ttt").innerHTML += "computer win"
-        } 
+            document.getElementById("ttt").innerHTML += "computer win";
+            for (let i = 1 ; i <= 9 ; i++){
+                document.getElementById(`box${i}`).disabled = true
+                }
+        }   
     
     
 }
@@ -55,6 +72,9 @@ function meplayer(){
         xoBox[6] === xoBox[4]  &&  xoBox[6] === xoBox[2] && xoBox[6] === player||
         xoBox[0] === xoBox[4]  &&  xoBox[0] === xoBox[8] && xoBox[0] === player){
             document.getElementById("ttt").innerHTML += "you win"
+            for (let i = 1 ; i <= 9 ; i++){
+                document.getElementById(`box${i}`).disabled = true
+                }
         } 
     else {return mecomputer()}
 }
