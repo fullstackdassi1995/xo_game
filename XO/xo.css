@@ -1,0 +1,60 @@
+body{
+  background-image: url(reka.jpg);
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+.h1 { 
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color:white
+}
+.p1 {
+  text-align: center;
+  font-size: large;
+  color: rgb(0, 0, 0);
+  background-color:white
+}
+
+.mybuttonX {
+  font-size: large;
+  float: right;
+  height: 35px;
+  width: 80px;
+  margin-right: 620px;
+  background-color: rgb(169, 135, 200);
+  
+ }
+ .mybuttonY {
+  font-size: large;
+
+  height: 50px;
+  width: 150px;
+
+  background-color: rgb(169, 135, 200);
+  
+ }
+ .mybuttonO {
+  font-size: large;
+  float: left;
+  height: 35px;
+  width: 80px;
+  margin-left: 620px;
+  background-color: rgb(169, 138, 198);
+  
+ }
+
+td {width: 100px; height: 100px;
+}
+
+ .button1 {
+  width: 100px ;
+  height: 100px;
+  background-color: white;
+  font-size:xx-large;
+ } 
+ .won {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background-color:white
+ }
+
