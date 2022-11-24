@@ -9,27 +9,27 @@
     <h1 class="h1">xo game</h1>
     <p class="p1">Select a shape</p>
 
-<button onclick="chooseX()" class="mybuttonX" id="choose">x</button> 
-<button onclick="chooseO()" class="mybuttonO" id="choose">o</button>
+<button onclick="chooseXO('x' , 'o')" class="mybuttonX" id="choose">x</button> 
+<button onclick="chooseXO('o' , 'x')" class="mybuttonO" id="choose">o</button>
 <br><br>
 
 
 <br><br><br>
 <table class="xoTable" align="center">
 <tr class="tr1"> 
-    <td id="td1"><button onclick="player1()" id="box1" class="button1"></button></td>
-    <td id="td2"><button onclick="player2()" id="box2" class="button1"></button></td>
-    <td id="td3"><button onclick="player3()" id="box3" class="button1"></button></td>
+    <td id="td1"><button onclick="playerClick(1)" id="box1" class="button1"></button></td>
+    <td id="td2"><button onclick="playerClick(2)" id="box2" class="button1"></button></td>
+    <td id="td3"><button onclick="playerClick(3)" id="box3" class="button1"></button></td>
 </tr>
 <tr> 
-    <td id="td4"><button onclick="player4()" id="box4" class="button1"></button></td>
-    <td id="td5"><button onclick="player5()" id="box5" class="button1"></button></td>
-    <td id="td6"><button onclick="player6()" id="box6" class="button1"></button></td>
+    <td id="td4"><button onclick="playerClick(4)" id="box4" class="button1"></button></td>
+    <td id="td5"><button onclick="playerClick(5)" id="box5" class="button1"></button></td>
+    <td id="td6"><button onclick="playerClick(6)" id="box6" class="button1"></button></td>
 </tr>
 <tr>
-    <td id="td7"><button onclick="player7()" id="box7" class="button1"></button></td>
-    <td id="td8"><button onclick="player8()" id="box8" class="button1"></button></td>
-    <td id="td9"><button onclick="player9()" id="box9" class="button1"></button></td>
+    <td id="td7"><button onclick="playerClick(7)" id="box7" class="button1"></button></td>
+    <td id="td8"><button onclick="playerClick(8)" id="box8" class="button1"></button></td>
+    <td id="td9"><button onclick="playerClick(9)" id="box9" class="button1"></button></td>
 </tr>
 </table>
 
