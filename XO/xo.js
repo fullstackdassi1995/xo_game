@@ -95,7 +95,7 @@ function playerClick(x){
     if (xoBox[x-1] === undefined){
         xoBox[x-1] = game_data.player
         document.getElementById(`box${x}`).innerHTML = game_data.player
-    return  meplayer();
+    return  mecomputer();
     } 
     return;
 }
