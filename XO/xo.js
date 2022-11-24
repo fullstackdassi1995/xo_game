@@ -1,24 +1,19 @@
 
 const xoBox = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
-let player = "x"
-let computer = "o"
-/*
-function chooseX(){
-    let player = "x"
-    let computer = "o" 
-}
+const game_data = {player: "x" , computer : "o"}
 
-function chooseO(){
-    let player = "o"
-    let computer = "x"   
-} */
+
+function chooseXO(x , o){
+game_data.player = x
+game_data.computer = o 
+}
+ 
 initGame()
 
 function initGame(){
     for(let i in xoBox){
         xoBox[i] = undefined    }
-    let player = "x"
-    let computer = "o"
+   chooseXO("x" , "o")
     let mikum = 0
     document.getElementById("ttt").innerHTML = ""  
     
@@ -35,127 +30,72 @@ function endGame() {
     document.getElementById(`play`).disabled = false
 }
 
-function mecomputer(){ 
-    do {mikum = Math.floor(Math.random() * 9) }
-    while (xoBox[mikum] !== undefined)
-    
-    if (xoBox[mikum] === undefined){
-       document.getElementById(`box${mikum+1}`).innerHTML = computer
-       xoBox[mikum] = computer
-    }
-        if(
-        xoBox[0] === xoBox[1]  &&  xoBox[0] === xoBox[2] && xoBox[0] === computer||
-        xoBox[3] === xoBox[4]  &&  xoBox[3] === xoBox[5] && xoBox[3] === computer ||
-        xoBox[6] === xoBox[7]  &&  xoBox[6] === xoBox[8] && xoBox[6] === computer||
-        xoBox[0] === xoBox[3]  &&  xoBox[0] === xoBox[6] && xoBox[0] === computer||
-        xoBox[1] === xoBox[4]  &&  xoBox[1] === xoBox[7] && xoBox[1] === computer||
-        xoBox[2] === xoBox[5]  &&  xoBox[2] === xoBox[8] && xoBox[2] === computer||
-        xoBox[6] === xoBox[4]  &&  xoBox[6] === xoBox[2] && xoBox[6] === computer||
-        xoBox[0] === xoBox[4]  &&  xoBox[0] === xoBox[8] && xoBox[0] === computer){
-            document.getElementById("ttt").innerHTML += "computer win";
+
+function check_winn(shape){
+    if(
+        xoBox[0] === xoBox[1]  &&  xoBox[0] === xoBox[2] && xoBox[0] === shape||
+        xoBox[3] === xoBox[4]  &&  xoBox[3] === xoBox[5] && xoBox[3] === shape||
+        xoBox[6] === xoBox[7]  &&  xoBox[6] === xoBox[8] && xoBox[6] === shape||
+        xoBox[0] === xoBox[3]  &&  xoBox[0] === xoBox[6] && xoBox[0] === shape||
+        xoBox[1] === xoBox[4]  &&  xoBox[1] === xoBox[7] && xoBox[1] === shape||
+        xoBox[2] === xoBox[5]  &&  xoBox[2] === xoBox[8] && xoBox[2] === shape||
+        xoBox[6] === xoBox[4]  &&  xoBox[6] === xoBox[2] && xoBox[6] === shape||
+        xoBox[0] === xoBox[4]  &&  xoBox[0] === xoBox[8] && xoBox[0] === shape){
             for (let i = 1 ; i <= 9 ; i++){
                 document.getElementById(`box${i}`).disabled = true
                 }
-        }   
+                return true
+        } 
+        eqwel()
+        return false 
+
+}
+
+function eqwel(){
+
+    for (let i in xoBox){
+        if (xoBox[i] !== undefined && xoBox[i] !== "x" && xoBox[i] !== "o"){
+            document.getElementById("ttt").innerHTML = "no one win";
+            for (let i = 1 ; i <= 9 ; i++){
+                  document.getElementById(`box${i}`).disabled = true
+            }
+            document.getElementById(`play`).disabled = false
+        } 
+        else {mecomputer()}
+    }  
+
+}
+
+
+function mecomputer(){ 
     
+    do {mikum = Math.floor(Math.random() * 9)}
+    while (xoBox[mikum] !== undefined)
+    if (xoBox[mikum] === undefined){
+       document.getElementById(`box${mikum+1}`).innerHTML = game_data.computer
+       xoBox[mikum] = game_data.computer
+    }
     
+        if(check_winn(game_data.computer)){
+            document.getElementById("ttt").innerHTML += "computer win";  
+       }   
 }
 
 function meplayer(){
-    if(
-        xoBox[0] === xoBox[1]  &&  xoBox[0] === xoBox[2] && xoBox[0] === player||
-        xoBox[3] === xoBox[4]  &&  xoBox[3] === xoBox[5] && xoBox[3] === player ||
-        xoBox[6] === xoBox[7]  &&  xoBox[6] === xoBox[8] && xoBox[6] === player||
-        xoBox[0] === xoBox[3]  &&  xoBox[0] === xoBox[6] && xoBox[0] === player||
-        xoBox[1] === xoBox[4]  &&  xoBox[1] === xoBox[7] && xoBox[1] === player||
-        xoBox[2] === xoBox[5]  &&  xoBox[2] === xoBox[8] && xoBox[2] === player||
-        xoBox[6] === xoBox[4]  &&  xoBox[6] === xoBox[2] && xoBox[6] === player||
-        xoBox[0] === xoBox[4]  &&  xoBox[0] === xoBox[8] && xoBox[0] === player){
-            document.getElementById("ttt").innerHTML += "you win"
-            for (let i = 1 ; i <= 9 ; i++){
-                document.getElementById(`box${i}`).disabled = true
-                }
-        } 
-    else {return mecomputer()}
+    
+    if(check_winn(game_data.player)){
+        return    document.getElementById("ttt").innerHTML += "you win";
+    } 
+
+    
 }
 
 
-function player1(){
-    if (xoBox[0] === undefined){
-        xoBox[0] = player
-        document.getElementById("box1").innerHTML = player
+function playerClick(x){
+    if (xoBox[x-1] === undefined){
+        xoBox[x-1] = game_data.player
+        document.getElementById(`box${x}`).innerHTML = game_data.player
     return  meplayer();
     } 
     return;
-}
-
-
-function player2(){
-    if (xoBox[1] == undefined){
-        xoBox[1] = player
-        document.getElementById("box2").innerHTML = player
-        meplayer();
-    }
-    return;
-}
-
-function player3(){
-    if (xoBox[2] == undefined){
-        xoBox[2] = player
-        document.getElementById("box3").innerHTML = player
-        meplayer();
-    }
-    return;
-}
-
-function player4(){
-    if (xoBox[3] == undefined){
-        xoBox[3] = player
-        document.getElementById("box4").innerHTML = player
-        meplayer();
-    }
-    return;
-}
-
-function player5(){
-    if (xoBox[4] == undefined){
-        xoBox[4] = player
-        document.getElementById("box5").innerHTML = player
-        meplayer();
-    }
-    return;
-}
-
-function player6(){
-    if (xoBox[5] == undefined){
-        xoBox[5] = player
-        document.getElementById("box6").innerHTML = player
-        meplayer();
-    }
-    return ;
-}
-
-function player7(){
-    if (xoBox[6] == undefined){
-        xoBox[6] = player
-        document.getElementById("box7").innerHTML = player
-        meplayer();
-    }
-    return;
-}
-
-function player8(){
-    if (xoBox[7] == undefined){
-        xoBox[7] = player
-        document.getElementById("box8").innerHTML = player
-        meplayer()
-    }
-}
-
-function player9(){
-    if (xoBox[8] == undefined){
-        xoBox[8] = player
-        document.getElementById("box9").innerHTML = player
-        meplayer()
-    }
 }
